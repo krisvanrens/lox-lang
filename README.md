@@ -1,2 +1,5 @@
 # lox-lang
-The Lox programming language (from "Crafting Interpreters" by Robert Nystrom).
+
+Various implementations of the Lox programming language (from "Crafting Interpreters" by Robert Nystrom).
+
+See here: https://www.craftinginterpreters.com/
