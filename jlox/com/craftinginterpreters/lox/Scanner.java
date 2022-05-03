@@ -83,6 +83,8 @@ class Scanner {
           while ((peek() != '\n') && !isAtEnd()) {
             advance();
           }
+        } else if (match('*')) {
+          multilineComment();
         } else {
           addToken(SLASH);
         }
@@ -162,6 +164,31 @@ class Scanner {
 
     String value = source.substring(start + 1, current - 1);
     addToken(STRING, value);
+  }
+
+  private void multilineComment() {
+    while (!isAtEnd()) {
+      if (peek() == '\n') {
+        line++;
+      }
+
+      // Detect end.
+      if ((peek() == '*') && (peekNext() == '/')) {
+        advance();
+        advance();
+        return;
+      }
+
+      // Detect nested comments.
+      if ((peek() == '/') && (peekNext() == '*')) {
+        advance();
+        advance();
+
+        multilineComment();
+      } else {
+        advance();
+      }
+    }
   }
 
   private boolean match(char expected) {
