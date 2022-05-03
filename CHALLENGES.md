@@ -22,10 +22,10 @@ Answers for challenges for the book "Crafting Interpreteters".
 
 ## Chapter 4
 
-1. `// TODO`
-2. `// TODO`
-3. `// TODO`
-4. `// TODO`
+1. The lexical grammars for Haskell and Python are not regular, because they use indentation space as an active part of it.
+2. In Coffeescript, parentheses for function calls are optional. This means the lexical grammar rules must be such that the space is mandatory, even when using parentheses. In C, a preprocessor macro expects _no_ space between the macro name and the parentheses of the parameter list. In Ruby `%w()` syntax, a space must be escaped.
+3. Multiline strings, or perhaps multiline comments.
+4. Done (including nesting). Nesting is slightly more difficult because it requires recursion.
 
 ## Chapter 5
 
