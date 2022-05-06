@@ -42,12 +42,9 @@ class Parser {
 
     while (match(QUESTION)) {
       Expr middle = expression();
-      if (match(COLON)) {
-        Expr right = equality();
-        expr = new Expr.Ternary(expr, middle, right);
-      } else {
-        throw error(peek(), "Expecting ':' in ternary operator.");
-      }
+      consume(COLON, "Expecting ':' in ternary operator.");
+      Expr right = equality();
+      expr = new Expr.Ternary(expr, middle, right);
     }
 
     return expr;
