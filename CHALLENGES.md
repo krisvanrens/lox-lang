@@ -35,7 +35,7 @@ Answers for challenges for the book "Crafting Interpreteters".
 
 ## Chapter 6
 
-1. `// TODO`
+1. The comma operator simply is a binary operator with the lowest precedence.
 2. `// TODO`
 3. `// TODO`
 
