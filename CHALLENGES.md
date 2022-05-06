@@ -11,7 +11,7 @@ Answers for challenges for the book "Crafting Interpreteters".
 ## Chapter 2
 
 1. I wrote a mini-language for scatter-gather building before using Flex and Bison.
-2. The burden of having to ship a full compiler for a runtime, and the compilation overhead itself during running.
+2. It's very complex. The burden of having to ship a full compiler (for which architecture?) for a runtime, and the compilation overhead (memory/compute resources) itself during running.
 3. Ease of implementation of the REPL, and for facilitating the user.
 
 ## Chapter 3
@@ -23,7 +23,7 @@ Answers for challenges for the book "Crafting Interpreteters".
 ## Chapter 4
 
 1. The lexical grammars for Haskell and Python are not regular, because they use indentation space as an active part of it.
-2. In Coffeescript, parentheses for function calls are optional. This means the lexical grammar rules must be such that the space is mandatory, even when using parentheses. In C, a preprocessor macro expects _no_ space between the macro name and the parentheses of the parameter list. In Ruby `%w()` syntax, a space must be escaped.
+2. In Coffeescript, parentheses for function calls are optional. This means the lexical grammar rules must be such that the space is mandatory, even when using parentheses. In C function macros, the preprocessor expects _no_ space between the macro name and the parentheses of the parameter list. In Ruby the same holds as for CoffeeScript.
 3. Multiline strings, or perhaps multiline comments.
 4. Done (including nesting). Nesting is slightly more difficult because it requires recursion.
 
