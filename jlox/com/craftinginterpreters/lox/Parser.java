@@ -134,7 +134,7 @@ class Parser {
       return new Expr.Grouping(expr);
     }
 
-    throw error(peek(), "Expect expression.");
+    throw error(peek(), "Expected expression.");
   }
 
   private boolean match(TokenType... types) {
@@ -170,6 +170,10 @@ class Parser {
     }
 
     return previous();
+  }
+
+  private boolean isAtStart() {
+    return (current == 0);
   }
 
   private boolean isAtEnd() {
