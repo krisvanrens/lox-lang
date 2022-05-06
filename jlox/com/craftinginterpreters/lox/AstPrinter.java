@@ -25,6 +25,11 @@ class AstPrinter implements Expr.Visitor<String> {
   }
 
   @Override
+  public String visitTernaryExpr(Expr.Ternary expr) {
+    return parenthesize("ternary", expr.left, expr.middle, expr.right);
+  }
+
+  @Override
   public String visitUnaryExpr(Expr.Unary expr) {
     return parenthesize(expr.operator.lexeme, expr.right);
   }
@@ -49,7 +54,13 @@ class AstPrinter implements Expr.Visitor<String> {
           new Expr.Literal(123)),
         new Token(TokenType.STAR, "*", null, 1),
         new Expr.Grouping(
-          new Expr.Literal(45.67)));
+          new Expr.Binary(
+            new Expr.Literal(45.67),
+            new Token(TokenType.SLASH, "/", null, 1),
+            new Expr.Ternary(
+              new Expr.Literal(true),
+              new Expr.Literal("Hi!"),
+              new Expr.Literal("Low")))));
 
     System.out.println(new AstPrinter().print(expression));
   }
