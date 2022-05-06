@@ -127,11 +127,37 @@ class Parser {
 
     if (match(LEFT_PAREN)) {
       Expr expr = expression();
-      consume(RIGHT_PAREN, "Expect ')' after expression");
+      consume(RIGHT_PAREN, "Expecting ')' after expression.");
       return new Expr.Grouping(expr);
     }
 
-    throw error(peek(), "Expected expression.");
+    // Error productions.
+
+    if (match(BANG_EQUAL, EQUAL_EQUAL)) {
+      error(previous(), "Missing left-hand operand.");
+      equality();
+      return null;
+    }
+
+    if (match(GREATER, GREATER_EQUAL, LESS, LESS_EQUAL)) {
+      error(previous(), "Missing left-hand operand.");
+      comparison();
+      return null;
+    }
+
+    if (match(PLUS)) { // NOTE: 'MINUS' is a valid unary prefix operator.
+      error(previous(), "Missing left-hand operand.");
+      term();
+      return null;
+    }
+
+    if (match(SLASH, STAR)) {
+      error(previous(), "Missing left-hand operand.");
+      factor();
+      return null;
+    }
+
+    throw error(peek(), "Expecting expression.");
   }
 
   private boolean match(TokenType... types) {

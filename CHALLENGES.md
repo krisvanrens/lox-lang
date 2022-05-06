@@ -37,7 +37,7 @@ Answers for challenges for the book "Crafting Interpreteters".
 
 1. The comma operator simply is a binary operator with the lowest precedence. Implemented.
 2. The ternary operator has low precedence, right above the comma operator. The ternary operator is right-to-left associative. The middle expression (between the `?` and the `:`) is parsed as if parenthesized; its precedence with respect to `?:` is ignored. Implemented.
-3. `// TODO`
+3. The error productions must be put at the end (of the `primary` production). Implemented.
 
 ## Chapter 7
 
