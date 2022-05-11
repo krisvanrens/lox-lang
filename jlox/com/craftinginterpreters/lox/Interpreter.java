@@ -150,9 +150,13 @@ class Interpreter implements Expr.Visitor<Object> {
 
   @Override
   public Object visitTernaryExpr(Expr.Ternary expr) {
-    // TODO
+    Object left = evaluate(expr.left);
 
-    return null;
+    if (isTruthy(left)) {
+      return evaluate(expr.middle);
+    }
+
+    return evaluate(expr.right);
   }
 
   void interpret(Expr expression) {
