@@ -133,7 +133,11 @@ class Interpreter implements Expr.Visitor<Object> {
         return (String)left + (String)right;
       }
 
-      throw new RuntimeError(expr.operator, "Operands must be two numbers or two strings.");
+      if ((left instanceof String) || (right instanceof String)) {
+        return left.toString() + right.toString();
+      }
+
+      throw new RuntimeError(expr.operator, "Operands must be two numbers or at least one string.");
 
     case SLASH:
       checkNumberOperands(expr.operator, left, right);
