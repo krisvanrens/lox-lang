@@ -41,6 +41,10 @@ Answers for challenges for the book "Crafting Interpreteters".
 
 ## Chapter 7
 
+1. I would tend to prevent comparing objects of different types, because most often this is a bug (IMHO). A static type system is another story altogether, but I would definitely steer towards a language that supports the programmer into fixing bugs early on, instead of them having to deal with a "free for all" language like JavaScript. In order to support comparing various types I would add type conversion utilities for the programmer to explicitly mark the comparisons.
+2. Done.
+3. Done.
+
 ## Chapter 8
 
 ## Chapter 9
