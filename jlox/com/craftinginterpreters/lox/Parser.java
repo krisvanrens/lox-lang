@@ -86,13 +86,31 @@ class Parser {
   }
 
   private Expr ternary() {
-    Expr expr = equality();
+    Expr expr = assignment();
 
     while (match(QUESTION)) {
-      Expr middle = expression();
+      Expr middle = assignment();
       consume(COLON, "Expecting ':' in ternary operator.");
-      Expr right = equality();
+      Expr right = assignment();
       expr = new Expr.Ternary(expr, middle, right);
+    }
+
+    return expr;
+  }
+
+  private Expr assignment() {
+    Expr expr = equality();
+
+    if (match(EQUAL)) {
+      Token equals = previous();
+      Expr value = assignment();
+
+      if (expr instanceof Expr.Variable) {
+        Token name = ((Expr.Variable)expr).name;
+        return new Expr.Assign(name, value);
+      }
+
+      error(equals, "Invalid assignment target.");
     }
 
     return expr;
