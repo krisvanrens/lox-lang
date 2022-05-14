@@ -49,7 +49,7 @@ Answers for challenges for the book "Crafting Interpreteters".
 
 1. No, won't do.
 2. Done.
-3. `// TODO`
+3. It prints '3'.
 
 ## Chapter 9
 
