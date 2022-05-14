@@ -47,6 +47,10 @@ Answers for challenges for the book "Crafting Interpreteters".
 
 ## Chapter 8
 
+1. No, won't do.
+2. Done.
+3. `// TODO`
+
 ## Chapter 9
 
 ## Chapter 10

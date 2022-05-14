@@ -5,6 +5,7 @@ import java.util.List;
 class Interpreter implements Expr.Visitor<Object>,
                              Stmt.Visitor<Void> {
   private Environment environment = new Environment();
+  private static Object uninitialized = new Object();
 
   @Override
   public Object visitLiteralExpr(Expr.Literal expr) {
@@ -30,7 +31,13 @@ class Interpreter implements Expr.Visitor<Object>,
 
   @Override
   public Object visitVariableExpr(Expr.Variable expr) {
-    return environment.get(expr.name);
+    Object value = environment.get(expr.name);
+
+    if (value == uninitialized) {
+      throw new RuntimeError(expr.name, "Trying to use uninitialized variable.");
+    }
+
+    return value;
   }
 
   private void checkNumberOperand(Token operator, Object operand) {
@@ -139,7 +146,8 @@ class Interpreter implements Expr.Visitor<Object>,
 
   @Override
   public Void visitVarStmt(Stmt.Var stmt) {
-    Object value = null;
+    Object value = uninitialized;
+
     if (stmt.initializer != null) {
       value = evaluate(stmt.initializer);
     }

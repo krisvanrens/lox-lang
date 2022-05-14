@@ -24,6 +24,10 @@ class Parser {
     return statements;
   }
 
+  Expr parseExpr() {
+    return expression();
+  }
+
   private Expr expression() {
     return comma();
   }
