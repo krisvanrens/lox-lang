@@ -13,6 +13,29 @@ class Interpreter implements Expr.Visitor<Object>,
   }
 
   @Override
+  public Object visitLogicalExpr(Expr.Logical expr) {
+    Object left = evaluate(expr.left);
+
+    switch (expr.operator.type) {
+    case AND:
+      if (!isTruthy(left)) {
+        return left;
+      }
+
+      break;
+
+    case OR:
+      if (isTruthy(left)) {
+        return left;
+      }
+
+      break;
+    }
+
+    return evaluate(expr.right);
+  }
+
+  @Override
   public Object visitUnaryExpr(Expr.Unary expr) {
     Object right = evaluate(expr.right);
 
