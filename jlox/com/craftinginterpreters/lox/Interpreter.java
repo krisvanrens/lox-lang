@@ -366,6 +366,16 @@ class Interpreter implements Expr.Visitor<Object>,
   }
 
   @Override
+  public Object visitGetExpr(Expr.Get expr) {
+    Object object = evaluate(expr.object);
+    if (object instanceof LoxInstance) {
+      return ((LoxInstance) object).get(expr.name);
+    }
+
+    throw new RuntimeError(expr.name, "Only class instances have properties.");
+  }
+
+  @Override
   public Object visitTernaryExpr(Expr.Ternary expr) {
     Object left = evaluate(expr.left);
 
