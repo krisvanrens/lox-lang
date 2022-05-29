@@ -60,6 +60,20 @@ class Interpreter implements Expr.Visitor<Object>,
   }
 
   @Override
+  public Object visitSetExpr(Expr.Set expr) {
+    Object object = evaluate(expr.object);
+
+    if (!(object instanceof LoxInstance)) {
+      throw new RuntimeError(expr.name, "Only instances of classes can have fields.");
+    }
+
+    Object value = evaluate(expr.value);
+    ((LoxInstance)object).set(expr.name, value);
+
+    return value;
+  }
+
+  @Override
   public Object visitUnaryExpr(Expr.Unary expr) {
     Object right = evaluate(expr.right);
 
@@ -194,7 +208,14 @@ class Interpreter implements Expr.Visitor<Object>,
   @Override
   public Void visitClassStmt(Stmt.Class stmt) {
     environment.define(stmt.name.lexeme, null);
-    LoxClass klass = new LoxClass(stmt.name.lexeme);
+
+    Map<String, LoxFunction> methods = new HashMap<>();
+    for (Stmt.Function method : stmt.methods) {
+      LoxFunction function = new LoxFunction(method, environment);
+      methods.put(method.name.lexeme, function);
+    }
+
+    LoxClass klass = new LoxClass(stmt.name.lexeme, methods);
     environment.assign(stmt.name, klass);
 
     return null;
