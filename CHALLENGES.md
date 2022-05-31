@@ -53,6 +53,30 @@ Answers for challenges for the book "Crafting Interpreteters".
 
 ## Chapter 9
 
+1. `// TODO`
+2. `// TODO`
+3. `// TODO`
+
 ## Chapter 10
 
+1. `// TODO`
+2. `// TODO`
+3. `// TODO`
+
 ## Chapter 11
+
+1. `// TODO`
+2. `// TODO`
+3. `// TODO`
+
+## Chapter 12
+
+1. `// TODO`
+2. `// TODO`
+3. `// TODO`
+
+## Chapter 13
+
+1. `// TODO`
+2. `// TODO`
+3. `// TODO`
